@@ -4,6 +4,25 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Login - Attendance Portal</title>
+<script>
+  (() => {
+    if (!localStorage.getItem('token')) return;
+    try {
+      const user = JSON.parse(localStorage.getItem('user') || 'null');
+      if (user?.role === 'admin') {
+        window.location.replace('admin.html');
+      } else if (user?.role === 'employee') {
+        window.location.replace('index.html');
+      } else {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+      }
+    } catch {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+    }
+  })();
+</script>
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
