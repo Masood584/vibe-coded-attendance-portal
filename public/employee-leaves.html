@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Leave Requests - Attendance Portal</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body class="employee-layout">
+  <div class="topbar">
+    <button class="drawer-toggle" id="drawer-toggle" type="button" aria-label="Open employee menu" aria-expanded="false">☰</button>
+    <div class="brand">📋 Attendance Portal</div>
+    <div class="topbar-account"><span class="user-info" id="user-info"></span><button class="logout-btn" id="logout-btn">Logout</button></div>
+  </div>
+  <aside class="admin-drawer" id="admin-drawer" aria-label="Employee navigation">
+    <div class="drawer-title">Employee menu</div>
+    <a class="drawer-link" href="index.html">Attendance</a>
+    <a class="drawer-link active" href="employee-leaves.html" aria-current="page">Leave requests</a>
+    <a class="drawer-link" href="employee-history.html">Attendance history</a>
+  </aside>
+  <button class="drawer-backdrop" id="drawer-backdrop" type="button" aria-label="Close employee menu"></button>
+
+  <main class="admin-wrap admin-content">
+    <div class="admin-heading"><h1>Leave requests</h1><p>Request leave and check whether your admin has reviewed it.</p></div>
+    <section class="admin-card">
+      <h2>Request leave</h2>
+      <form id="leave-request-form" class="leave-request-form">
+        <div><label for="leave-start-date">From</label><input id="leave-start-date" name="startDate" type="date" required /></div>
+        <div><label for="leave-end-date">To</label><input id="leave-end-date" name="endDate" type="date" required /></div>
+        <div class="leave-reason"><label for="leave-reason">Reason</label><input id="leave-reason" name="reason" type="text" maxlength="500" required /></div>
+        <button class="admin-refresh" id="submit-leave-request" type="submit">Submit request</button>
+      </form>
+      <div class="msg" id="leave-request-message" role="status"></div>
+    </section>
+    <section class="admin-card">
+      <div class="admin-card-heading"><div><h2>Your requests</h2><p>Pending requests appear until your admin approves or rejects them.</p></div><button class="admin-refresh" id="refresh-leave-requests" type="button">Refresh</button></div>
+      <div class="admin-message" id="leave-list-message" role="status"></div>
+      <div class="table-scroll">
+        <table class="admin-table">
+          <thead><tr><th>Dates</th><th>Reason</th><th>Status</th><th>Reviewed by</th></tr></thead>
+          <tbody id="my-leave-requests"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script src="employee-shell.js"></script>
+  <script src="employee-leaves.js"></script>
+</body>
+</html>

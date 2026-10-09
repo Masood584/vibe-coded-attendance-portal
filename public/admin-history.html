@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Attendance History - Admin</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body class="admin-layout">
+  <div class="topbar">
+    <button class="drawer-toggle" id="drawer-toggle" type="button" aria-label="Open admin menu" aria-expanded="false">☰</button>
+    <div class="brand">📋 Attendance Portal</div>
+    <div class="topbar-account">
+      <span class="user-info" id="user-info"></span>
+      <button class="logout-btn" id="logout-btn">Logout</button>
+    </div>
+  </div>
+
+  <aside class="admin-drawer" id="admin-drawer" aria-label="Admin navigation">
+    <div class="drawer-title">Admin menu</div>
+    <a class="drawer-link" href="admin.html">Employees</a>
+    <a class="drawer-link" href="admin-schedule.html">Office schedule</a>
+    <a class="drawer-link" href="admin-leaves.html">Leave requests</a>
+    <a class="drawer-link active" href="admin-history.html" aria-current="page">Attendance history</a>
+    <a class="drawer-link" href="admin-audit.html">Edit audit log</a>
+  </aside>
+  <button class="drawer-backdrop" id="drawer-backdrop" type="button" aria-label="Close admin menu"></button>
+
+  <main class="admin-wrap admin-content">
+    <div class="admin-heading">
+      <h1>Attendance history</h1>
+      <p>View attendance records for all employees or filter by employee.</p>
+    </div>
+
+    <section class="admin-card">
+      <div class="admin-card-heading">
+        <div>
+          <h2>All employee records</h2>
+          <p>Records are sorted newest first.</p>
+        </div>
+        <button class="admin-refresh" id="refresh-history" type="button">Refresh</button>
+      </div>
+      <div class="history-filter">
+        <label for="employee-filter">Filter by employee</label>
+        <select id="employee-filter">
+          <option value="">All employees</option>
+        </select>
+      </div>
+      <div class="report-controls">
+        <div>
+          <label for="report-from">From</label>
+          <input id="report-from" type="date" />
+        </div>
+        <div>
+          <label for="report-to">To</label>
+          <input id="report-to" type="date" />
+        </div>
+        <button class="admin-refresh" id="export-report" type="button">Export CSV</button>
+      </div>
+      <div class="admin-message" id="export-message" role="status"></div>
+      <div class="admin-message" id="history-message" role="status"></div>
+      <div class="table-scroll">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Employee</th>
+              <th>Department</th>
+              <th>Date</th>
+              <th>Check in</th>
+              <th>Breaks</th>
+              <th>Check out</th>
+              <th>Total (hrs)</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="history-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="employee-dialog" id="edit-attendance-dialog" aria-labelledby="edit-attendance-title">
+    <form id="edit-attendance-form">
+      <div class="dialog-heading">
+        <div>
+          <h2 id="edit-attendance-title">Edit attendance times</h2>
+          <p id="edit-attendance-employee"></p>
+        </div>
+        <button class="dialog-close" id="close-edit-attendance" type="button" aria-label="Close dialog">×</button>
+      </div>
+      <div class="employee-form-grid">
+        <div>
+          <label for="edit-check-in">Check in</label>
+          <input id="edit-check-in" name="checkIn" type="datetime-local" />
+        </div>
+        <div>
+          <label for="edit-check-out">Check out</label>
+          <input id="edit-check-out" name="checkOut" type="datetime-local" />
+        </div>
+      </div>
+      <div class="break-editor-heading">
+        <div class="break-editor-copy">
+          <h3>Break sessions</h3>
+          <p class="section-hint">Edit each break start/end separately. Leave an end time empty only for an active break.</p>
+        </div>
+        <button class="admin-refresh" id="add-break-session" type="button">Add break</button>
+      </div>
+      <div id="break-sessions-editor"></div>
+      <div class="admin-message" id="edit-attendance-message" role="status"></div>
+      <div class="dialog-actions">
+        <button class="dialog-cancel" id="cancel-edit-attendance" type="button">Cancel</button>
+        <button class="admin-refresh" type="submit" id="save-attendance-button">Save times</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="admin-shell.js"></script>
+  <script src="admin-history.js"></script>
+</body>
+</html>

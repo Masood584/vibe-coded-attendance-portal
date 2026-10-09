@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Dashboard - Attendance Portal</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body class="admin-layout">
+  <div class="topbar">
+    <button class="drawer-toggle" id="drawer-toggle" type="button" aria-label="Open admin menu" aria-expanded="false">☰</button>
+    <div class="brand">📋 Attendance Portal</div>
+    <div class="topbar-account">
+      <span class="user-info" id="user-info"></span>
+      <button class="logout-btn" id="logout-btn">Logout</button>
+    </div>
+  </div>
+
+  <aside class="admin-drawer" id="admin-drawer" aria-label="Admin navigation">
+    <div class="drawer-title">Admin menu</div>
+    <a class="drawer-link active" href="admin.html" aria-current="page">Employees</a>
+    <a class="drawer-link" href="admin-schedule.html">Office schedule</a>
+    <a class="drawer-link" href="admin-leaves.html">Leave requests</a>
+    <a class="drawer-link" href="admin-history.html">Attendance history</a>
+    <a class="drawer-link" href="admin-audit.html">Edit audit log</a>
+  </aside>
+  <button class="drawer-backdrop" id="drawer-backdrop" type="button" aria-label="Close admin menu"></button>
+
+  <main class="admin-wrap admin-content">
+    <div class="admin-heading">
+      <h1>Employee overview</h1>
+      <div class="admin-heading-row">
+        <p id="today-date"></p>
+        <button class="admin-refresh" id="open-create-employee" type="button">Create employee</button>
+      </div>
+    </div>
+
+    <section class="admin-card">
+      <div class="admin-card-heading">
+        <div>
+          <h2>Today's team flow</h2>
+          <p>See every employee's current attendance step and today's timestamps.</p>
+        </div>
+        <button class="admin-refresh" id="refresh-team" type="button">Refresh</button>
+      </div>
+      <div class="admin-message ok" id="create-employee-notice" role="status"></div>
+      <div class="admin-message" id="team-message" role="status"></div>
+      <div class="table-scroll">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Employee</th>
+              <th>Department</th>
+              <th>Current flow</th>
+              <th>Check in</th>
+              <th>Break</th>
+              <th>Check out</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="team-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <dialog class="employee-dialog" id="create-employee-dialog" aria-labelledby="create-employee-title">
+    <form id="create-employee-form" class="employee-form">
+      <div class="dialog-heading">
+        <div>
+          <h2 id="create-employee-title">Create employee</h2>
+          <p>Create an employee login account.</p>
+        </div>
+        <button class="dialog-close" id="close-create-employee" type="button" aria-label="Close dialog">×</button>
+      </div>
+      <div class="employee-form-grid">
+        <div>
+          <label for="employee-name">Full name</label>
+          <input id="employee-name" name="name" type="text" autocomplete="name" required />
+        </div>
+        <div>
+          <label for="employee-email">Email</label>
+          <input id="employee-email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div>
+          <label for="employee-password">Temporary password</label>
+          <input id="employee-password" name="password" type="password" autocomplete="new-password" required />
+        </div>
+        <div>
+          <label for="employee-department">Department (optional)</label>
+          <input id="employee-department" name="department" type="text" />
+        </div>
+      </div>
+      <div class="admin-message" id="create-employee-message" role="status"></div>
+      <div class="dialog-actions">
+        <button class="dialog-cancel" id="cancel-create-employee" type="button">Cancel</button>
+        <button class="admin-refresh" type="submit" id="create-employee-button">Create employee</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="employee-dialog" id="edit-employee-dialog" aria-labelledby="edit-employee-title">
+    <form id="edit-employee-form">
+      <div class="dialog-heading">
+        <div>
+          <h2 id="edit-employee-title">Edit employee</h2>
+          <p>Update the employee's name or department.</p>
+        </div>
+        <button class="dialog-close" id="close-edit-employee" type="button" aria-label="Close dialog">×</button>
+      </div>
+      <div class="employee-form-grid">
+        <div>
+          <label for="edit-employee-name">Full name</label>
+          <input id="edit-employee-name" name="name" type="text" autocomplete="name" required />
+        </div>
+        <div>
+          <label for="edit-employee-department">Department</label>
+          <input id="edit-employee-department" name="department" type="text" />
+        </div>
+      </div>
+      <div class="admin-message" id="edit-employee-message" role="status"></div>
+      <div class="dialog-actions">
+        <button class="dialog-cancel" id="cancel-edit-employee" type="button">Cancel</button>
+        <button class="admin-refresh" type="submit" id="save-employee-button">Save changes</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="admin-shell.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

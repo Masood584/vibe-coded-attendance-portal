@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Leave Requests - Admin</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body class="admin-layout">
+  <div class="topbar">
+    <button class="drawer-toggle" id="drawer-toggle" type="button" aria-label="Open admin menu" aria-expanded="false">☰</button>
+    <div class="brand">📋 Attendance Portal</div>
+    <div class="topbar-account"><span class="user-info" id="user-info"></span><button class="logout-btn" id="logout-btn">Logout</button></div>
+  </div>
+  <aside class="admin-drawer" id="admin-drawer" aria-label="Admin navigation">
+    <div class="drawer-title">Admin menu</div>
+    <a class="drawer-link" href="admin.html">Employees</a>
+    <a class="drawer-link" href="admin-schedule.html">Office schedule</a>
+    <a class="drawer-link active" href="admin-leaves.html" aria-current="page">Leave requests</a>
+    <a class="drawer-link" href="admin-history.html">Attendance history</a>
+    <a class="drawer-link" href="admin-audit.html">Edit audit log</a>
+  </aside>
+  <button class="drawer-backdrop" id="drawer-backdrop" type="button" aria-label="Close admin menu"></button>
+  <main class="admin-wrap admin-content">
+    <div class="admin-heading"><h1>Leave requests</h1><p>Review employee leave requests. Approved leave is excluded from absent status.</p></div>
+    <section class="admin-card">
+      <div class="admin-card-heading"><div><h2>All requests</h2><p>Pending requests appear first.</p></div><button class="admin-refresh" id="refresh-leave-requests" type="button">Refresh</button></div>
+      <div class="admin-message" id="leave-requests-message" role="status"></div>
+      <div class="table-scroll">
+        <table class="admin-table">
+          <thead><tr><th>Employee</th><th>Dates</th><th>Reason</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="leave-requests-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script src="admin-shell.js"></script>
+  <script src="admin-leaves.js"></script>
+</body>
+</html>

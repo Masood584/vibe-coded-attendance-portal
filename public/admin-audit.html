@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Attendance Audit Log - Admin</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body class="admin-layout">
+  <div class="topbar">
+    <button class="drawer-toggle" id="drawer-toggle" type="button" aria-label="Open admin menu" aria-expanded="false">☰</button>
+    <div class="brand">📋 Attendance Portal</div>
+    <div class="topbar-account"><span class="user-info" id="user-info"></span><button class="logout-btn" id="logout-btn">Logout</button></div>
+  </div>
+  <aside class="admin-drawer" id="admin-drawer" aria-label="Admin navigation">
+    <div class="drawer-title">Admin menu</div>
+    <a class="drawer-link" href="admin.html">Employees</a>
+    <a class="drawer-link" href="admin-schedule.html">Office schedule</a>
+    <a class="drawer-link" href="admin-leaves.html">Leave requests</a>
+    <a class="drawer-link" href="admin-history.html">Attendance history</a>
+    <a class="drawer-link active" href="admin-audit.html" aria-current="page">Edit audit log</a>
+  </aside>
+  <button class="drawer-backdrop" id="drawer-backdrop" type="button" aria-label="Close admin menu"></button>
+  <main class="admin-wrap admin-content">
+    <div class="admin-heading"><h1>Attendance edit audit log</h1><p>Review who changed attendance times and compare previous with updated values.</p></div>
+    <section class="admin-card">
+      <div class="admin-card-heading">
+        <div><h2>Recent attendance corrections</h2><p>Showing up to the latest 50 edits.</p></div>
+        <button class="admin-refresh" id="refresh-audit" type="button">Refresh log</button>
+      </div>
+      <div class="admin-message" id="audit-message" role="status"></div>
+      <div class="table-scroll">
+        <table class="admin-table audit-table">
+          <thead><tr><th>Edited at</th><th>Admin</th><th>Employee</th><th>Attendance date</th><th>Changes (before → after)</th></tr></thead>
+          <tbody id="audit-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script src="admin-shell.js"></script>
+  <script src="admin-audit.js"></script>
+</body>
+</html>

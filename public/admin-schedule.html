@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Office Schedule - Admin</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body class="admin-layout">
+  <div class="topbar">
+    <button class="drawer-toggle" id="drawer-toggle" type="button" aria-label="Open admin menu" aria-expanded="false">☰</button>
+    <div class="brand">📋 Attendance Portal</div>
+    <div class="topbar-account"><span class="user-info" id="user-info"></span><button class="logout-btn" id="logout-btn">Logout</button></div>
+  </div>
+  <aside class="admin-drawer" id="admin-drawer" aria-label="Admin navigation">
+    <div class="drawer-title">Admin menu</div>
+    <a class="drawer-link" href="admin.html">Employees</a>
+    <a class="drawer-link active" href="admin-schedule.html" aria-current="page">Office schedule</a>
+    <a class="drawer-link" href="admin-leaves.html">Leave requests</a>
+    <a class="drawer-link" href="admin-history.html">Attendance history</a>
+    <a class="drawer-link" href="admin-audit.html">Edit audit log</a>
+  </aside>
+  <button class="drawer-backdrop" id="drawer-backdrop" type="button" aria-label="Close admin menu"></button>
+  <main class="admin-wrap admin-content">
+    <div class="admin-heading"><h1>Office attendance schedule</h1><p>Set office start and end times. Late, absent, and early checkout statuses use this schedule.</p></div>
+    <section class="admin-card">
+      <form id="office-settings-form">
+        <div class="office-settings-grid">
+          <div><label for="office-start-time">Office start time</label><input id="office-start-time" name="officeStartTime" type="time" required /></div>
+          <div><label for="office-end-time">Office end time</label><input id="office-end-time" name="officeEndTime" type="time" required /></div>
+          <div><label for="grace-minutes">Grace period (minutes)</label><input id="grace-minutes" name="graceMinutes" type="number" min="0" max="180" required /></div>
+        </div>
+        <fieldset class="working-days">
+          <legend>Working days</legend>
+          <label><input type="checkbox" name="workingDays" value="1" /> Monday</label>
+          <label><input type="checkbox" name="workingDays" value="2" /> Tuesday</label>
+          <label><input type="checkbox" name="workingDays" value="3" /> Wednesday</label>
+          <label><input type="checkbox" name="workingDays" value="4" /> Thursday</label>
+          <label><input type="checkbox" name="workingDays" value="5" /> Friday</label>
+          <label><input type="checkbox" name="workingDays" value="6" /> Saturday</label>
+          <label><input type="checkbox" name="workingDays" value="0" /> Sunday</label>
+        </fieldset>
+        <p class="section-hint">Employees can check out before closing time; the admin employee list will mark that as an early checkout.</p>
+        <div class="schedule-actions"><div class="admin-message" id="office-settings-message" role="status"></div><button class="admin-refresh" id="save-office-settings" type="submit">Save schedule</button></div>
+      </form>
+    </section>
+  </main>
+  <script src="admin-shell.js"></script>
+  <script src="admin-schedule.js"></script>
+</body>
+</html>
